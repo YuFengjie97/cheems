@@ -7,7 +7,13 @@ export const routes = [
     path: '/',
     component: Home,
     meta: { title: 'Home' },
-    children: [],
+    children: [
+      {
+        path: 'coderain',
+        meta: { title: '代码雨' },
+        component: () => import('@/views/p5/CodeRain.vue'),
+      },
+    ],
   },
   { path: '/:path(.*)', component: NotFound },
 ]
