@@ -9,9 +9,14 @@ export const routes = [
     meta: { title: 'Home' },
     children: [
       {
-        path: 'coderain',
-        meta: { title: '代码雨' },
-        component: () => import('@/views/p5/CodeRain.vue'),
+        path: 'svgText',
+        meta: { title: 'svg text' },
+        component: () => import('@/views/svg/Text.vue'),
+      },
+      {
+        path: 'wdnmd',
+        meta: { title: 'svg wdnmd' },
+        component: () => import('@/views/svg/WDNMD.vue'),
       },
     ],
   },

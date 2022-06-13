@@ -16,7 +16,6 @@ import { ref } from 'vue'
 import { routes } from '../../routes'
 
 const navList = ref(routes[0].children.slice(0))
-
 </script>
 
 <style lang="less" scoped></style>
