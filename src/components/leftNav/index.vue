@@ -4,7 +4,7 @@
       :to="item.path"
       v-for="(item, i) in navList"
       :key="i"
-      class="p-2 m-1 w-full rounded-md bg-black transition-background duration-300 text-white text-center"
+      class="block p-2 m-1 rounded-md bg-black transition-background duration-300 text-white text-center"
     >
       {{ item.meta.title }}
     </router-link>
