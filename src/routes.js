@@ -30,9 +30,14 @@ export const routes = [
       },
       {
         path: 'tree',
-        meta: {title: 'd3 Tree'},
-        component: ()=>import('@/views/d3/Tree.vue')
-      }
+        meta: { title: 'd3 Tree' },
+        component: () => import('@/views/d3/Tree.vue'),
+      },
+      {
+        path: 'selectArea',
+        meta: { title: '选择区域' },
+        component: () => import('@/views/SelectArea.vue'),
+      },
     ],
   },
   { path: '/:path(.*)', component: NotFound },
