@@ -38,6 +38,11 @@ export const routes = [
         meta: { title: '选择区域' },
         component: () => import('@/views/SelectArea.vue'),
       },
+      {
+        path: 'musicVisual',
+        meta: {title: '音乐可视化'},
+        component: () => import('@/views/canvas/MusicVisual.vue')
+      }
     ],
   },
   { path: '/:path(.*)', component: NotFound },
