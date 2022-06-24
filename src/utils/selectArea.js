@@ -6,6 +6,8 @@ export class SA {
   end = []
   area = null
   selectData = []
+  conX = 0
+  conY = 0
   mousedownCallback = () => {}
   selectCallback = () => {}
   mouseupCallback = () => {}
@@ -21,14 +23,21 @@ export class SA {
     this.mousedown()
     this.mousemove()
     this.mouseup()
+    this.initConData()
+  }
+  initConData () {
+    let  { x, y } = this.con.getBoundingClientRect()
+    this.conX = x
+    this.conY = y
   }
   mousedown() {
     this.con.addEventListener('mousedown', (e) => {
       this.isDown = true
       console.log('mousedown')
-      this.start = [e.clientX, e.clientY]
+      this.start = [e.clientX - this.conX, e.clientY - this.conY]
       this.createArea()
       this.mousedownCallback()
+      console.log(this.start);
     })
   }
 
@@ -36,7 +45,7 @@ export class SA {
     this.con.addEventListener('mousemove', (e) => {
       if (!this.isDown) return
       console.log('mousemove')
-      this.end = [e.clientX, e.clientY]
+      this.end = [e.clientX - this.conX, e.clientY - this.conY]
       this.updateArea()
       this.select()
     })
