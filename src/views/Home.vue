@@ -2,7 +2,9 @@
   <div class="home">
     <LeftNav />
     <div class="main">
-      <router-view></router-view>
+      <div class="card">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -14,11 +16,20 @@ import LeftNav from '@/components/leftNav/index.vue'
 
 <style lang="less" scoped>
 .home {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-wrap: nowrap;
   .main {
     flex: 1;
+    padding: 10px;
+    background: rgb(243, 253, 253);
+  }
+  .card{
+    border-radius: 10px;
+    border: 1px solid #eee;
+    background: #fff;
+    padding: 10px;
   }
 }
 </style>

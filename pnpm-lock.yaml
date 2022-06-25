@@ -18,6 +18,7 @@ specifiers:
   vite: ^2.9.10
   vue: ^3.2.37
   vue-router: ^4.0.15
+  wavesurfer.js: ^6.2.0
 
 dependencies:
   '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/2.0.6_vue@3.2.37
@@ -25,6 +26,7 @@ dependencies:
   element-plus: registry.npmmirror.com/element-plus/2.2.6_vue@3.2.37
   vue: registry.npmmirror.com/vue/3.2.37
   vue-router: registry.npmmirror.com/vue-router/4.0.16_vue@3.2.37
+  wavesurfer.js: registry.npmmirror.com/wavesurfer.js/6.2.0
 
 devDependencies:
   '@headlessui/vue': registry.npmmirror.com/@headlessui/vue/1.6.4_vue@3.2.37
@@ -1904,6 +1906,12 @@ packages:
       '@vue/runtime-dom': registry.npmmirror.com/@vue/runtime-dom/3.2.37
       '@vue/server-renderer': registry.npmmirror.com/@vue/server-renderer/3.2.37_vue@3.2.37
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.37
+    dev: false
+
+  registry.npmmirror.com/wavesurfer.js/6.2.0:
+    resolution: {integrity: sha512-yuOteX+RKgJl4p5V+YNflm79QRNFWpNo0UHtKaGf1G05qMNChfbcJU0MZYL7+OJTHgYszYqN3dgUXjugYd/Iew==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/wavesurfer.js/-/wavesurfer.js-6.2.0.tgz}
+    name: wavesurfer.js
+    version: 6.2.0
     dev: false
 
   registry.npmmirror.com/xtend/4.0.2:

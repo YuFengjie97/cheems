@@ -2,7 +2,7 @@
   <div class="con">
     <svg class="svg">
       <symbol id="symbolText">
-        <text id="text" text-anchor="middle" x="50%" y="50%">WDNMD,闸总</text>
+        <text id="text" text-anchor="middle" x="50%" y="70%">WDNMD,闸总</text>
       </symbol>
       <use xlink:href="#symbolText" class="text"></use>
       <use xlink:href="#symbolText" class="text"></use>

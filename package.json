@@ -11,7 +11,8 @@
     "d3": "^7.4.4",
     "element-plus": "^2.2.6",
     "vue": "^3.2.37",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "wavesurfer.js": "^6.2.0"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.6.4",

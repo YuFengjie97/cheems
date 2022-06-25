@@ -41,7 +41,7 @@ export const routes = [
       {
         path: 'musicVisual',
         meta: {title: '音乐可视化'},
-        component: () => import('@/views/canvas/MusicVisual.vue')
+        component: () => import('@/views/music/WaveSurfer.vue')
       }
     ],
   },
