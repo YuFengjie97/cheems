@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "depoly": "vite build && bash script/depoly.sh"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.6",
