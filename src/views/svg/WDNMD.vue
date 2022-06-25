@@ -1,6 +1,6 @@
 <template>
   <div class="con">
-    <svg viewBox="0 0 800 600">
+    <svg class="svg">
       <symbol id="symbolText">
         <text id="text" text-anchor="middle" x="50%" y="50%">WDNMD,闸总</text>
       </symbol>
@@ -17,6 +17,11 @@ import { ref } from 'vue'
 
 <style lang="less" scoped>
 .con {
+  height: 100%;
+  .svg{
+    width: 100%;
+    height: 100%;
+  }
   background: #212121;
   // @font-face {
   //   font-family: 'HanaleiFill';

@@ -37,7 +37,6 @@ export class SA {
       this.start = [e.clientX - this.conX, e.clientY - this.conY]
       this.createArea()
       this.mousedownCallback()
-      console.log(this.start);
     })
   }
 
@@ -61,7 +60,9 @@ export class SA {
   }
 
   createArea() {
-    this.area = document.createElement('div')
+    if (!this.area) {
+      this.area = document.createElement('div')
+    }
     this.area.style.position = 'absolute'
     this.area.style.border = '1px solid rgb(0,119,255)'
     this.area.style.background = 'rgba(0,119,255,0.2)'

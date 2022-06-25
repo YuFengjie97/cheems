@@ -18,21 +18,21 @@ export const routes = [
         meta: { title: 'wdnmd' },
         component: () => import('@/views/svg/WDNMD.vue'),
       },
-      {
-        path: 'animationPath',
-        meta: { title: '路径和动画' },
-        component: () => import('@/views/svg/AnimatePath.vue'),
-      },
-      {
-        path: 'animationMulti',
-        meta: { title: '复数动画' },
-        component: () => import('@/views/svg/AnimateMulti.vue'),
-      },
-      {
-        path: 'tree',
-        meta: { title: 'd3 Tree' },
-        component: () => import('@/views/d3/Tree.vue'),
-      },
+      // {
+      //   path: 'animationPath',
+      //   meta: { title: '路径和动画' },
+      //   component: () => import('@/views/svg/AnimatePath.vue'),
+      // },
+      // {
+      //   path: 'animationMulti',
+      //   meta: { title: '复数动画' },
+      //   component: () => import('@/views/svg/AnimateMulti.vue'),
+      // },
+      // {
+      //   path: 'tree',
+      //   meta: { title: 'd3 Tree' },
+      //   component: () => import('@/views/d3/Tree.vue'),
+      // },
       {
         path: 'selectArea',
         meta: { title: '选择区域' },

@@ -1,12 +1,11 @@
 <template>
-  <div class="selectData">
-    selectData:
-    <span v-for="i in selectData" :key="`num${i}`">{{ i }}</span>
-  </div>
   <div class="con" ref="con">
-    <div class="item" v-for="i in 44" :key="i" :data-id="i">
+    <div class="item" v-for="i in 66" :key="i" :data-id="i">
       {{ i }}
     </div>
+  </div>
+  <div class="selectData">
+    selectData:{{selectData}}
   </div>
 </template>
 
@@ -19,7 +18,7 @@ onMounted(() => {
   let conDom = con.value
   let items = document.querySelectorAll('.con .item')
   const sa = new SA(conDom, items, 'id',() => {
-    
+    selectData.value = ''
   }, () => {
     selectData.value = `[ ${sa.selectData.join(', ')} ]`
   })
@@ -27,7 +26,7 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
-@size: 100px;
+@size: 40px;
 .selectData {
   padding: 20px 20px;
   font-size: 24px;
@@ -45,7 +44,7 @@ onMounted(() => {
   height: @size;
   margin: 10px;
   border: 4px solid #000;
-  font-size: 28px;
+  font-size: 20px;
   user-select: none;
 }
 </style>
