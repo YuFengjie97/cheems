@@ -14,7 +14,7 @@
 
 <script setup>
 import AudioControl from '@/components/audioControl/index.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import * as WaveSurfer from 'wavesurfer.js'
 import openSun from '@/assets/audio/openSun.mp3'
 let wavesurfer = null
@@ -25,10 +25,10 @@ onMounted(() => {
     progressColor: 'purple',
     skipLength: 5
   })
-  wavesurfer.on('ready', function () {
-    wavesurfer.play()
-  })
   wavesurfer.load(openSun)
+})
+onUnmounted(()=>{
+  wavesurfer.destroy()
 })
 function handleBackward() {
   wavesurfer.skipBackward()
