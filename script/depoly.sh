@@ -3,7 +3,9 @@
 # 发生错误时终止
 set -e
 
-git checkout -b gh-pages
+git checkout gh-pages
+
+git rebase main
 
 # 构建
 npm run build
