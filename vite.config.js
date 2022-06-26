@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: '/cheems/',
+  base: 'https://yufengjie97.github.io/cheems/',
   plugins: [vue()],
   resolve: {
     alias: {
