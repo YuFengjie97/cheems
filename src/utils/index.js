@@ -1,2 +1,5 @@
-export * from './selectArea.js'
+export * from './selectArea'
 export * from './audio'
+export * from './canvas'
+export * from './colors'
+export * from './math'

@@ -42,6 +42,11 @@ export const routes = [
         path: 'musicVisual',
         meta: {title: '音乐可视化'},
         component: () => import('@/views/music/WaveSurfer.vue')
+      },
+      {
+        path: 'musicBall',
+        meta: {title: '音乐可视化-球'},
+        component: () => import('@/views/music/MusicBall.vue')
       }
     ],
   },
