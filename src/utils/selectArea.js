@@ -23,6 +23,7 @@ export class SA {
     this.mousedown()
     this.mousemove()
     this.mouseup()
+    this.mouseleave()
     this.initConData()
   }
   initConData () {
@@ -56,6 +57,17 @@ export class SA {
       console.log('mouseup')
       this.removeArea()
       this.mouseupCallback()
+    })
+  }
+
+  mouseleave(){
+    this.con.addEventListener('mouseleave',()=>{
+      if (this.isDown) {
+        this.isDown = false
+        console.log('mouseleave');
+        this.removeArea()
+        this.mouseupCallback()
+      }
     })
   }
 
