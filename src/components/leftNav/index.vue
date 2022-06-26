@@ -1,5 +1,5 @@
 <template>
-  <el-menu router class="el-menu-vertical-demo">
+  <el-menu router default-active="/cheems/" class="el-menu-vertical-demo">
     <el-menu-item
       v-for="(item, index) in navList"
       :key="index"
@@ -15,7 +15,13 @@
 <script setup>
 import { ref } from 'vue'
 import { routes } from '../../routes'
-const navList = ref(routes[0].children.slice(0))
+const navList = ref([])
+navList.value = routes[0].children.slice(0).map(item=>{
+  return {
+    path: 'cheems/'+item.path,
+    meta: item.meta
+  }
+})
 </script>
 
 <style lang="less" scoped>

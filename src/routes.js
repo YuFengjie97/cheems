@@ -4,12 +4,12 @@ import NotFound from './views/NotFound.vue'
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
   {
-    path: '/',
+    path: '/cheems',
     component: Home,
     meta: { title: 'Home' },
     children: [
       {
-        path: 'svgText',
+        path: '',
         meta: { title: '文字变换' },
         component: () => import('@/views/svg/Text.vue'),
       },
