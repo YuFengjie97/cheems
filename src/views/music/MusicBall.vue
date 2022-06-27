@@ -7,12 +7,16 @@
 <script setup>
 import { Circle, colors, random } from '@/utils'
 import { onMounted, ref } from 'vue'
+let ctx = null
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth - 220)
 const canvasHeight = ref(window.innerHeight - 50)
 const circleNum = 100
 const rMin = 10
 const rMax = 50
+const rInc = 0.8
+
+const circles = []
 
 function createCircle(ctx) {
   for (let i = 0; i < circleNum; i++) {
@@ -21,12 +25,30 @@ function createCircle(ctx) {
     const y = random(0, canvasHeight.value)
     const fillStyle = random(colors)
     const circle = new Circle(ctx, x, y, r, fillStyle)
+    circles.push(circle)
   }
 }
 
+function updateCircle() {
+  ctx.clearRect(0, 0, canvasWidth.value, canvasHeight.value)
+  circles.forEach((c) => {
+    if (c.isGrow) {
+      c.r += rInc
+      if (c.r > rMax) c.isGrow = false
+    } else {
+      c.r -= rInc
+      if (c.r < rMin) c.isGrow = true
+    }
+
+    c.draw()
+  })
+  window.requestAnimationFrame(updateCircle)
+}
+
 onMounted(() => {
-  let ctx = canvas.value.getContext('2d')
+  ctx = canvas.value.getContext('2d')
   createCircle(ctx)
+  updateCircle()
 })
 </script>
 

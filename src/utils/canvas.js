@@ -19,6 +19,10 @@ export class Circle {
     this.startAngle = startAngle
     this.endAngle = endAngle
     this.anticlockwise = anticlockwise
+
+    // 自定义属性
+    this.isGrow = false
+
     this.draw()
   }
 
