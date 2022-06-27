@@ -29,10 +29,18 @@ cd vvt-app
 ```
 
 ```sh
-npm i
-npm run dev
-npm run build
-npm run serve
+pnpm i
+pnpm run dev
+pnpm run build
+pnpm run serve
+pnpm run depoly
 ```
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/web2033/vite-vue3-tailwind-starter)
+
+以上为vite模板自带
+# 写给自己
+- vite版本更新很快,vite.config.js配置可能有变化
+- githubPage部署分支时gh-pages
+- 使用pnpm
+- 使用pnpm run depoly使用脚本部署,其实就是一个打包加推送
