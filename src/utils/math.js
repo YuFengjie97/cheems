@@ -9,3 +9,12 @@ export function random(...args) {
     return args[0][parseInt(Math.random() * len)]
   }
 }
+
+export function getMax(arr) {
+  let max = arr[0]
+  let len = arr.length
+  for (let i = 0; i < len; i++) {
+    if (arr[i] > max) max = arr[i]
+  }
+  return max
+}

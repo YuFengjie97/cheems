@@ -18,7 +18,7 @@
 
 <script setup>
 import AudioControl from '@/components/audioControl/index.vue'
-import { Rect, colors, random, AudioAnalyser } from '@/utils'
+import { Rect, colors, random, AudioAnalyser, getMax } from '@/utils'
 import { onMounted, ref } from 'vue'
 import mp3 from '@/assets/audio/circles.mp3'
 
@@ -29,10 +29,13 @@ const audio = ref()
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth - 220)
 const canvasHeight = ref(window.innerHeight - 50)
-const rectNum = 256 // 为fftSize的一半
-const shrinkCoe = 0.3 // 缩小系数
+const fftSize = 512
+const rectNum = fftSize / 2
+const coe = 3.4 // 高度变化系数
 const gap = 1
 const rects = []
+let h = 1 //基准色色相
+let audioDataMax = 300 // audioData最大值,先写死,如果每一帧都去遍历一遍应该很卡
 
 onMounted(() => {
   audio.value.src = mp3
@@ -42,22 +45,37 @@ onMounted(() => {
 })
 
 function createRect(ctx) {
+  // ctx.save()
+  // 让条形看上去是以底部为基准,高度往上增加
+  ctx.translate(canvasWidth.value, canvasHeight.value)
+  ctx.rotate(Math.PI)
+
   const width = (canvasWidth.value - gap * (rectNum - 1)) / rectNum
+
   for (let i = 0; i < rectNum; i++) {
     let x = (width + gap) * i
     const fillStyle = random(colors)
-    const rect = new Rect(ctx, x, 200, width, 0, fillStyle)
+    const rect = new Rect(ctx, x, 0, width, 0, fillStyle)
     rects.push(rect)
   }
 }
 
 function updateRect() {
+  if (h<360){
+    h++
+  }else{
+    h = 1
+  }
   // ctx.clearRect(0,0,canvasWidth.value,canvasHeight.value)
   ctx.fillStyle = '#2d3436'
   ctx.fillRect(0, 0, canvasWidth.value, canvasHeight.value)
   let audioData = aa.getAudioData()
+  audioDataMax = getMax(audioData)
   rects.forEach((item, i) => {
-    item.height = audioData[i]
+    item.height = audioData[i] * coe
+    item.fillStyle = `hsl(${h},${
+      (audioData[i] / audioDataMax) * 100 + '%'
+    },50%)`
     item.draw()
   })
   window.requestAnimationFrame(updateRect)
@@ -65,7 +83,7 @@ function updateRect() {
 
 function handlePlay() {
   audio.value.play()
-  aa = new AudioAnalyser(audio.value)
+  aa = new AudioAnalyser(audio.value, fftSize)
   updateRect()
 }
 function handlePause() {
