@@ -47,6 +47,11 @@ export const routes = [
         path: 'musicBall',
         meta: {title: '音乐可视化-圆'},
         component: () => import('@/views/music/MusicCircle.vue')
+      },
+      {
+        path: 'musicRect',
+        meta: {title: '音乐可视化-条'},
+        component: () => import('@/views/music/MusicRect.vue')
       }
     ],
   },
