@@ -34,7 +34,8 @@ const rectNum = fftSize / 2 // 完整取样
 const coe = canvasHeight.value / 255 // 高度变化系数,audioDataMax最大值是255
 const gap = 1
 const rects = []
-let h = 1 //基准色色相
+// let h = 1 //基准色色相
+let hScale = 1 // 色相取余比例
 let audioDataMax = 300 // audioData最大值
 
 onMounted(() => {
@@ -62,10 +63,15 @@ function createRect(ctx) {
 
 function updateRect() {
   // 色相会逐渐变化
-  if (h < 360) {
-    h++
+  // if (h < 360) {
+  //   h++
+  // } else {
+  //   h = 1
+  // }
+  if (hScale < 360) {
+    hScale++
   } else {
-    h = 1
+    hScale = 1
   }
   // ctx.clearRect(0,0,canvasWidth.value,canvasHeight.value)
   ctx.fillStyle = '#2d3436'
@@ -75,7 +81,7 @@ function updateRect() {
   audioData.reverse()
   rects.forEach((item, i) => {
     item.height = audioData[i] * coe
-    item.fillStyle = `hsl(${h},${
+    item.fillStyle = `hsl(${audioData[i] % hScale},${
       (audioData[i] / audioDataMax) * 100 + '%'
     },50%)` // 饱和度会根据当前值/最大值比例来计算
     item.draw()

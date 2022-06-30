@@ -37,7 +37,7 @@ const rMax = 50
 // const rInc = 0.8 // 半径增量
 const shrinkCoe = 0.3 // 缩小系数
 const circles = []
-let h = 1
+// let h = 1
 let audioDataMax = 1
 
 onMounted(() => {
@@ -59,18 +59,18 @@ function createCircle(ctx) {
 }
 
 function updateCircle() {
-  if (h < 360) {
-    h++
-  } else {
-    h = 1
-  }
+  // if (h < 360) {
+  //   h++
+  // } else {
+  //   h = 1
+  // }
   // ctx.clearRect(0,0,canvasWidth.value,canvasHeight.value)
   ctx.fillStyle = '#2d3436'
   ctx.fillRect(0, 0, canvasWidth.value, canvasHeight.value)
   let audioData = aa.getAudioData()
   audioDataMax = getMax(audioData)
   circles.forEach((item, i) => {
-    item.fillStyle = `hsl(${h},${
+    item.fillStyle = `hsl(${audioData[i] % 360},${
       (audioData[i] / audioDataMax) * 100 + '%'
     },50%)`
     item.r = audioData[i] * shrinkCoe
