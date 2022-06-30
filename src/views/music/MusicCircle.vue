@@ -20,7 +20,7 @@
 /** @type {HTMLCanvasElement} */
 
 import AudioControl from '@/components/audioControl/index.vue'
-import { Circle, colors, random, AudioAnalyser } from '@/utils'
+import { Circle, colors, random, AudioAnalyser, getMax } from '@/utils'
 import { onMounted, ref } from 'vue'
 import mp3 from '@/assets/audio/circles.mp3'
 
@@ -37,6 +37,8 @@ const rMax = 50
 // const rInc = 0.8 // 半径增量
 const shrinkCoe = 0.3 // 缩小系数
 const circles = []
+let h = 1
+let audioDataMax = 1
 
 onMounted(() => {
   audio.value.src = mp3
@@ -50,30 +52,39 @@ function createCircle(ctx) {
     const r = random(rMin, rMax)
     const x = random(0, canvasWidth.value)
     const y = random(0, canvasHeight.value)
-    const fillStyle = random(colors)
+    const fillStyle = '#fff'
     const circle = new Circle(ctx, x, y, r, fillStyle)
     circles.push(circle)
   }
 }
 
 function updateCircle() {
+  if (h < 360) {
+    h++
+  } else {
+    h = 1
+  }
   // ctx.clearRect(0,0,canvasWidth.value,canvasHeight.value)
-  ctx.fillStyle = "#2d3436";
-  ctx.fillRect (0,0,canvasWidth.value,canvasHeight.value);
+  ctx.fillStyle = '#2d3436'
+  ctx.fillRect(0, 0, canvasWidth.value, canvasHeight.value)
   let audioData = aa.getAudioData()
-  circles.forEach((item,i)=>{
+  audioDataMax = getMax(audioData)
+  circles.forEach((item, i) => {
+    item.fillStyle = `hsl(${h},${
+      (audioData[i] / audioDataMax) * 100 + '%'
+    },50%)`
     item.r = audioData[i] * shrinkCoe
     item.draw()
   })
   window.requestAnimationFrame(updateCircle)
 }
 
-function handlePlay(){
+function handlePlay() {
   audio.value.play()
   aa = new AudioAnalyser(audio.value)
   updateCircle()
 }
-function handlePause(){
+function handlePause() {
   audio.value.pause()
 }
 </script>
@@ -85,7 +96,7 @@ canvas {
 .con {
   position: relative;
 }
-.audioControl{
+.audioControl {
   position: absolute;
   top: 0;
   left: 0;

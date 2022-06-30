@@ -35,7 +35,7 @@ const coe = canvasHeight.value / 255 // 高度变化系数,audioDataMax最大值
 const gap = 1
 const rects = []
 let h = 1 //基准色色相
-let audioDataMax = 300 // audioData最大值,先写死,如果每一帧都去遍历一遍应该很卡
+let audioDataMax = 300 // audioData最大值
 
 onMounted(() => {
   audio.value.src = mp3
