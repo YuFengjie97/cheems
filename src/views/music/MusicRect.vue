@@ -30,8 +30,8 @@ const canvas = ref()
 const canvasWidth = ref(window.innerWidth - 220)
 const canvasHeight = ref(window.innerHeight - 50)
 const fftSize = 512
-const rectNum = fftSize / 2
-const coe = 2 // 高度变化系数
+const rectNum = fftSize / 2 // 完整取样
+const coe = canvasHeight.value / 255 // 高度变化系数,audioDataMax最大值是255
 const gap = 1
 const rects = []
 let h = 1 //基准色色相
@@ -71,6 +71,7 @@ function updateRect() {
   ctx.fillRect(0, 0, canvasWidth.value, canvasHeight.value)
   let audioData = aa.getAudioData()
   audioDataMax = getMax(audioData)
+  audioData.reverse()
   rects.forEach((item, i) => {
     item.height = audioData[i] * coe
     item.fillStyle = `hsl(${h},${
