@@ -61,9 +61,10 @@ function createRect(ctx) {
 }
 
 function updateRect() {
-  if (h<360){
+  // 色相会逐渐变化
+  if (h < 360) {
     h++
-  }else{
+  } else {
     h = 1
   }
   // ctx.clearRect(0,0,canvasWidth.value,canvasHeight.value)
@@ -76,7 +77,7 @@ function updateRect() {
     item.height = audioData[i] * coe
     item.fillStyle = `hsl(${h},${
       (audioData[i] / audioDataMax) * 100 + '%'
-    },50%)`
+    },50%)` // 饱和度会根据当前值/最大值比例来计算
     item.draw()
   })
   window.requestAnimationFrame(updateRect)
