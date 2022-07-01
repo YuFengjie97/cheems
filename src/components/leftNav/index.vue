@@ -1,5 +1,5 @@
 <template>
-  <el-menu router default-active="/cheems/" class="el-menu-vertical-demo">
+  <el-menu router default-active="/cheems/wdnmd" class="el-menu-vertical-demo">
     <el-menu-item
       v-for="(item, index) in navList"
       :key="index"

@@ -7,16 +7,17 @@ export const routes = [
     path: '/cheems',
     component: Home,
     meta: { title: 'Home' },
+    redirect: '/cheems/wdnmd',
     children: [
-      {
-        path: '',
-        meta: { title: '文字变换' },
-        component: () => import('@/views/svg/Text.vue'),
-      },
       {
         path: 'wdnmd',
         meta: { title: 'wdnmd' },
         component: () => import('@/views/svg/WDNMD.vue'),
+      },
+      {
+        path: 'textTransform',
+        meta: { title: '文字变换' },
+        component: () => import('@/views/svg/Text.vue'),
       },
       // {
       //   path: 'animationPath',
