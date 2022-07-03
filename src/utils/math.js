@@ -18,3 +18,11 @@ export function getMax(arr) {
   }
   return max
 }
+
+export function randomArr(len, min,max) {
+  let res = []
+  for(let i=0;i<len;i++){
+    res.push(random(min,max))
+  }
+  return res
+}

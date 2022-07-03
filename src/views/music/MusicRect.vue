@@ -20,7 +20,7 @@
 import AudioControl from '@/components/audioControl/index.vue'
 import { Rect, colors, random, AudioAnalyser, getMax } from '@/utils'
 import { onMounted, ref } from 'vue'
-import mp3 from '@/assets/audio/circles.mp3'
+import mp3 from '@/assets/audio/audio1.mp3'
 
 let aa = null
 
