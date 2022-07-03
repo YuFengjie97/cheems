@@ -24,7 +24,7 @@ import {
 import AudioControl from '@/components/audioControl/index.vue'
 import { onMounted, onUnmounted, ref } from 'vue'
 import * as WaveSurfer from 'wavesurfer.js'
-import openSun from '@/assets/audio/circles.mp3'
+import audio1 from '@/assets/audio/audio1.mp3'
 let wavesurfer = null
 const isLoading = ref(true)
 onMounted(() => {
@@ -37,7 +37,7 @@ onMounted(() => {
     barWidth: 5,
     height: 400,
   })
-  wavesurfer.load(openSun)
+  wavesurfer.load(audio1)
   wavesurfer.on('ready', () => {
     console.log('load ok')
     isLoading.value = false
