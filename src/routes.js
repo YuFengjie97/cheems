@@ -53,6 +53,11 @@ export const routes = [
         path: 'musicRect',
         meta: {title: '音乐可视化-条'},
         component: () => import('@/views/music/MusicRect.vue')
+      },
+      {
+        path: 'musicBar',
+        meta: {title: '音乐可视化-柱'},
+        component: () => import('@/views/music/MusicBar.vue')
       }
     ],
   },

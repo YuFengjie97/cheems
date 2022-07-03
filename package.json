@@ -8,11 +8,13 @@
     "depoly": "bash script/depoly.sh"
   },
   "dependencies": {
-    "vue": "^3.2.36",
-    "vue-router": "^4.0.15",
     "@element-plus/icons-vue": "^2.0.6",
     "d3": "^7.4.4",
     "element-plus": "^2.2.6",
+    "pinia": "^2.0.14",
+    "three": "^0.142.0",
+    "vue": "^3.2.36",
+    "vue-router": "^4.0.15",
     "wavesurfer.js": "^6.2.0"
   },
   "devDependencies": {

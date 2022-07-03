@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <LeftNav />
-    <div class="main">
+    <div class="main" ref="main">
       <div class="card">
         <router-view></router-view>
       </div>
@@ -11,6 +11,16 @@
 
 <script setup>
 import LeftNav from '@/components/leftNav/index.vue'
+import { onMounted, ref } from 'vue'
+import {useStore} from '@/store'
+
+const store = useStore()
+
+const main = ref()
+onMounted(()=>{
+  console.log('main mounted');
+  store.mainHeight = main.value.getBoundingClientRect().height
+})
 
 </script>
 
