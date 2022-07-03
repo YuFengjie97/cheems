@@ -14,11 +14,11 @@ export const routes = [
         meta: { title: 'wdnmd' },
         component: () => import('@/views/svg/WDNMD.vue'),
       },
-      {
-        path: 'textTransform',
-        meta: { title: '文字变换' },
-        component: () => import('@/views/svg/Text.vue'),
-      },
+      // {
+      //   path: 'textTransform',
+      //   meta: { title: '文字变换' },
+      //   component: () => import('@/views/svg/Text.vue'),
+      // },
       // {
       //   path: 'animationPath',
       //   meta: { title: '路径和动画' },
