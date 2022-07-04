@@ -92,6 +92,9 @@ function initMeshs() {
 }
 
 function initLight () {
+  const ambientLight = new THREE.AmbientLight(0x888888);
+  scene.add(ambientLight)
+
   const spotLight = new THREE.SpotLight(0x888888);
   // 设置聚光光源位置
   spotLight.position.set(200, 200, 200);
