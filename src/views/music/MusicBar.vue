@@ -23,6 +23,9 @@ import { ElLoading } from 'element-plus'
 import AudioControl from '@/components/audioControl/index.vue'
 import mp3 from '@/assets/audio/audio1.mp3'
 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+
 const store = useStore()
 
 const threeCon = ref()
@@ -34,6 +37,7 @@ const meshs = []
 let sound = null
 let analyser = null
 const gap = 1
+const barWidth = 1
 const fftSize = 512
 const meshNum = fftSize / 2
 let isPlaying = false
@@ -56,22 +60,32 @@ watch(
     camera = c
     renderer = r
 
-    camera.position.x = 100
-    camera.position.y = 10
-    camera.position.z = 100
+    camera.position.x = 0
+    camera.position.y = 0
+    camera.position.z = 160
     camera.lookAt(0, 0, 0)
 
     mt.createCoordinateSystem()
+    initControl()
     initMeshs()
     initAudioAnalyser()
     animation()
   }
 )
 
+function initControl () {
+  const controls = new OrbitControls( camera, renderer.domElement );
+  controls.enablePan = false;
+  controls.enableZoom = false;
+  controls.target.set( 0, 1, 0 );
+  controls.update();
+}
+
 function initMeshs() {
+  let start = - (meshNum/3) * (barWidth+gap)
   for (let i = 0; i < meshNum; i++) {
     const mesh = createMesh()
-    mesh.position.set((1 + gap) * i, 0, 0)
+    mesh.position.set(start + (1 + gap) * i, 0, 0)
     meshs.push(mesh)
   }
 }
