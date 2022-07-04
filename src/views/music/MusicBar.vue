@@ -17,6 +17,8 @@ import { ref, watch } from 'vue'
 import * as THREE from 'three'
 import { MyThree, randomArr } from '@/utils'
 import { useStore } from '@/store'
+import { ElLoading } from 'element-plus'
+
 
 import AudioControl from '@/components/audioControl/index.vue'
 import mp3 from '@/assets/audio/audio1.mp3'
@@ -36,9 +38,17 @@ const fftSize = 512
 const meshNum = fftSize / 2
 let isPlaying = false
 
+let loading = null
+
 watch(
   () => store.mainHeight,
   (height) => {
+    loading = ElLoading.service({
+      lock: true,
+      text: 'Audio loading',
+      background: 'rgba(0, 0, 0, 0.7)',
+    })
+
     let { width } = threeCon.value.getBoundingClientRect() // 父组件渲染完,子组件肯定渲染完了,所以直接获取
 
     const { c, s, r, mt } = new MyThree(threeCon.value, width, height - 50)
@@ -102,6 +112,7 @@ function initAudioAnalyser() {
     sound.setLoop(true)
     sound.setVolume(0.5)
     analyser = new THREE.AudioAnalyser(sound, fftSize)
+    loading.close()
   })
 }
 
