@@ -19,8 +19,14 @@ const store = useStore()
 const main = ref()
 onMounted(()=>{
   console.log('main mounted');
-  store.mainHeight = main.value.getBoundingClientRect().height
+  setMainHeight()
+  // window.addEventListener('resize', function () {
+  //   setMainHeight()
+  // })
 })
+function setMainHeight () {
+  store.mainHeight = main.value.getBoundingClientRect().height
+}
 
 </script>
 
