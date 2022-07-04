@@ -19,10 +19,26 @@ export function getMax(arr) {
   return max
 }
 
-export function randomArr(len, min,max) {
+export function getAvg(arr) {
+  let sum = arr.reduce((acc, next) => acc + next, 0)
+  return sum / arr.length
+}
+
+export function getMaxAndAvg(arr) {
+  let max = arr[0]
+  let sum = arr.reduce((acc, next) => {
+    if (next > max) max = next
+    return acc + next
+  }, 0)
+
+  let avg = sum / arr.length
+  return {max,avg}
+}
+
+export function randomArr(len, min, max) {
   let res = []
-  for(let i=0;i<len;i++){
-    res.push(random(min,max))
+  for (let i = 0; i < len; i++) {
+    res.push(random(min, max))
   }
   return res
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="con">
+  <div class="con" ref="con">
     <AudioControl
       class="audioControl"
       :showStop="false"
@@ -20,34 +20,77 @@
 /** @type {HTMLCanvasElement} */
 
 import AudioControl from '@/components/audioControl/index.vue'
-import { Circle, colors, random, AudioAnalyser, getMax } from '@/utils'
-import { onMounted, ref } from 'vue'
+import {
+  Circle,
+  colors,
+  random,
+  AudioAnalyser,
+  getMax,
+  getAvg,
+  getMaxAndAvg,
+} from '@/utils'
+import { onMounted, ref, watch } from 'vue'
+import { useStore } from '@/store/index'
 import mp3 from '@/assets/audio/audio1.mp3'
+import { ElLoading } from 'element-plus'
+
+const con = ref()
 
 let aa = null
+let isInitAudioAnalyserDone = false
 
 let ctx = null
 const audio = ref()
 const canvas = ref()
-const canvasWidth = ref(window.innerWidth - 220)
-const canvasHeight = ref(window.innerHeight - 50)
+const canvasWidth = ref(0)
+const canvasHeight = ref(0)
 const circleNum = 256 // 为fftSize的一半
 const rMin = 10
 const rMax = 50
 // const rInc = 0.8 // 半径增量
 const shrinkCoe = 0.3 // 缩小系数
-const circles = []
-// let h = 1
-let audioDataMax = 1
+let circles = []
+let h = 1
+let audioDataBase = 1
+
+let loading = null
+let isPlaying = false
+
+const store = useStore()
+
+watch(
+  () => store.mainHeight,
+  () => {
+    // loading = ElLoading.service({
+    //   lock: true,
+    //   text: 'Audio loading',
+    //   background: 'rgba(0, 0, 0, 0.7)',
+    // })
+    init()
+    // loading.close()
+  }
+)
 
 onMounted(() => {
-  audio.value.src = mp3
-
-  ctx = canvas.value.getContext('2d')
-  createCircle(ctx)
+  init()
 })
 
-function createCircle(ctx) {
+function init() {
+  audio.value.src = mp3
+
+  const { width } = con.value.getBoundingClientRect()
+  const height = store.mainHeight - 50
+  canvasWidth.value = width
+  canvasHeight.value = height
+  ctx = canvas.value.getContext('2d')
+  ctx.fillStyle = '#2d3436'
+  ctx.fillRect(0, 0, canvasWidth.value, canvasHeight.value)
+
+  createCircle()
+}
+
+function createCircle() {
+  circles = []
   for (let i = 0; i < circleNum; i++) {
     const r = random(rMin, rMax)
     const x = random(0, canvasWidth.value)
@@ -59,6 +102,7 @@ function createCircle(ctx) {
 }
 
 function updateCircle() {
+  if (!isPlaying) return
   // if (h < 360) {
   //   h++
   // } else {
@@ -68,12 +112,12 @@ function updateCircle() {
   ctx.fillStyle = '#2d3436'
   ctx.fillRect(0, 0, canvasWidth.value, canvasHeight.value)
   let audioData = aa.getAudioData()
-  audioDataMax = getMax(audioData)
+  const { max, avg } = getMaxAndAvg(audioData)
   circles.forEach((item, i) => {
-    item.fillStyle = `hsl(${audioData[i] % 360},${
-      (audioData[i] / audioDataMax) * 100 + '%'
+    item.fillStyle = `hsl(${parseInt((audioData[i] / max) * 360)},${
+      (audioData[i] / avg) * 100 + '%'
     },50%)`
-    item.r = audioData[i] * shrinkCoe
+    item.r = parseInt(audioData[i] * shrinkCoe)
     item.draw()
   })
   window.requestAnimationFrame(updateCircle)
@@ -81,11 +125,16 @@ function updateCircle() {
 
 function handlePlay() {
   audio.value.play()
-  aa = new AudioAnalyser(audio.value)
+  isPlaying = true
+  if (!isInitAudioAnalyserDone) {
+    aa = new AudioAnalyser(audio.value)
+    isInitAudioAnalyserDone = true
+  }
   updateCircle()
 }
 function handlePause() {
   audio.value.pause()
+  isPlaying = false
 }
 </script>
 
