@@ -68,6 +68,7 @@ watch(
     mt.createCoordinateSystem()
     initControl()
     initMeshs()
+    initLight()
     initAudioAnalyser()
     animation()
   }
@@ -90,9 +91,29 @@ function initMeshs() {
   }
 }
 
+function initLight () {
+  const spotLight = new THREE.SpotLight(0x888888);
+  // 设置聚光光源位置
+  spotLight.position.set(200, 200, 200);
+  // 聚光灯光源指向网格模型mesh2
+  spotLight.target = meshs[100];
+  // 设置聚光光源发散角度
+  spotLight.angle = Math.PI / 6
+  scene.add(spotLight);//光对象添加到scene场景中
+  
+  let i = 1
+
+  setInterval(() => {
+    spotLight.target = meshs[i]
+    i++
+    if(i>meshNum) i=1
+  }, 1000);
+}
+
 function createMesh() {
   const geometry = new THREE.BoxGeometry(1, 1, 1)
-  const material = new THREE.MeshNormalMaterial()
+  // const material = new THREE.MeshNormalMaterial()
+  const material = new THREE.MeshLambertMaterial({color: '#6c5ce7'})
   const mesh = new THREE.Mesh(geometry, material)
   scene.add(mesh)
   return mesh
