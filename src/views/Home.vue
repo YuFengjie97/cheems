@@ -42,6 +42,7 @@ function setMainHeight () {
     background: rgb(243, 253, 253);
   }
   .card{
+    height: 100%;
     border-radius: 10px;
     border: 1px solid #eee;
     background: #fff;

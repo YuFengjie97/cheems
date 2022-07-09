@@ -40,6 +40,11 @@ export const routes = [
         component: () => import('@/views/SelectArea.vue'),
       },
       {
+        path: 'clock',
+        meta: {title: 'canvas 表'},
+        component: ()=>import('@/views/Clock.vue')
+      },
+      {
         path: 'musicVisual',
         meta: {title: '音乐可视化'},
         component: () => import('@/views/music/WaveSurfer.vue')
