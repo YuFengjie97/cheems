@@ -45,6 +45,11 @@ export const routes = [
         component: ()=>import('@/views/Clock.vue')
       },
       {
+        path: 'guaguale',
+        meta: {title: '刮刮乐'},
+        component: ()=>import('@/views/GuaGuaLe.vue')
+      },
+      {
         path: 'musicVisual',
         meta: {title: '音乐可视化'},
         component: () => import('@/views/music/WaveSurfer.vue')
