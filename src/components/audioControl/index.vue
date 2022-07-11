@@ -1,5 +1,5 @@
 <template>
-  <div class="con">
+  <div class="audioControlCon">
     <img class="houtui" v-show="showBackward" @click="backward" src="@/assets/iconSvg/houtui.svg"/>
     <img class="bofang" v-show="!playing" @click="play"  src="@/assets/iconSvg/bofang.svg"/>
     <img class="zanting" v-show="playing" @click="pause" src="@/assets/iconSvg/zanting.svg"/>
@@ -52,7 +52,7 @@ function stop(){
 </script>
 
 <style lang="less" scoped>
-.con {
+.audioControlCon {
   // width: 200px;
   width: fit-content;
   display: flex;
