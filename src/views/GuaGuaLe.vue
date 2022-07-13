@@ -1,7 +1,7 @@
 <template>
   <div class="con">
     <div ref="imgCon" class="imgCon">
-      <img src="@/assets/img/kamenRider.jpeg" />
+      <img src="@/assets/img/shadow.jpeg" />
       <canvas ref="canvas"></canvas>
     </div>
   </div>
