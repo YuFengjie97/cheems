@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+import { container } from 'tailwindcss/defaultTheme'
 import { onMounted, ref } from 'vue'
 
 let ctx = null
@@ -45,6 +46,13 @@ onMounted(() => {
   })
   canvas.value.addEventListener('mouseout', () => {
     mouseDown = false
+  })
+  window.addEventListener('resize', ()=>{
+    ctx = initCanvas(canvas.value)
+    const { width, height } = setCanvasSize(imgCon.value, ctx)
+    canvasHeight = height
+    canvasWidth = width
+    text(ctx)
   })
 })
 
