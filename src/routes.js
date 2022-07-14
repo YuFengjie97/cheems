@@ -50,6 +50,11 @@ export const routes = [
         component: ()=>import('@/views/GuaGuaLe.vue')
       },
       {
+        path: 'particles',
+        meta: {title: '粒子'},
+        component: ()=>import('@/views/canvas/Particles.vue')
+      },
+      {
         path: 'musicVisual',
         meta: {title: '音乐可视化'},
         component: () => import('@/views/music/WaveSurfer.vue')
